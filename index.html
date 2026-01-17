@@ -741,13 +741,7 @@ document.addEventListener("click", function(event) {
 
 
 
-// =====================================================
-// REPLACEMENT for the obfuscated loader block
-// - Keeps your Return-To-Top + scroll visibility logic
-// - Removes ALL _0x... obfuscation + dynamic script injection
-// - Loads your real external functions from:
-//   https://portersturkeys.github.io/adv-cal/akzzfjhfys4493.js
-// =====================================================
+
 
 // Shows the button when the user scrolls down from the top of the document
 window.onscroll = function () { scrollFunction(); };
@@ -803,23 +797,10 @@ function clearSummaryChart() {
   if (tbody) tbody.innerHTML = "";
 }
 
-// =====================================================
-// LOAD YOUR REAL EXTERNAL FUNCTIONS (replaces obfuscated injection)
-// =====================================================
-(function loadRealCore() {
-  const src = "https://portersturkeys.github.io/adv-cal/akzzfjhfys4493.js";
 
-  // If already present, don't add twice
-  const already = Array.from(document.scripts).some(s => (s.src || "").includes("akzzfjhfys4493.js"));
-  if (already) return;
+   src = "https://portersturkeys.github.io/adv-cal/akzzfjhfys4493.js";
 
-  const s = document.createElement("script");
-  s.src = src;
-  s.defer = true;
-  s.onload = () => console.log("[CORE] Loaded:", src);
-  s.onerror = () => console.error("[CORE] Failed to load:", src);
-  document.head.appendChild(s);
-})();
+  
 
 
 function setDefaultImages() {
