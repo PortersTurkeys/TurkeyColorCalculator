@@ -817,15 +817,17 @@ summaryTableBody.innerHTML = '';
 
 
 function setDefaultImages() {
-const defaultFemalePath = 'https://raw.githubusercontent.com/PortersTurkeys/Pictures/main/MBronze.jpg';
-const defaultFemalePath = 'https://raw.githubusercontent.com/PortersTurkeys/Pictures/main/FBronze.jpg';
-  
+  const defaultMaleUrl   = "https://raw.githubusercontent.com/PortersTurkeys/Pictures/main/MBronze.jpg";
+  const defaultFemaleUrl = "https://raw.githubusercontent.com/PortersTurkeys/Pictures/main/FBronze.jpg";
 
-document.getElementById('sireImageContainer').innerHTML = `<img src="${defaultMalePath}" alt="Default Sire Image" style="max-width: 300px; height: auto;">`;
-document.getElementById('damImageContainer').innerHTML = `<img src="${defaultFemalePath}" alt="Default Dam Image" style="max-width: 300px; height: auto;">`;
+  document.getElementById("sireImageContainer").innerHTML =
+    `<img src="${defaultMaleUrl}" alt="Default Sire Image" style="max-width:460px;height:auto;">`;
+
+  document.getElementById("damImageContainer").innerHTML =
+    `<img src="${defaultFemaleUrl}" alt="Default Dam Image" style="max-width:460px;height:auto;">`;
 }
 
-window.addEventListener('DOMContentLoaded', setDefaultImages);
+window.addEventListener("DOMContentLoaded", setDefaultImages);
 
 function removeUnusedAlleles(genotype) {
 const unusedAlleles = ['CC', 'dd', 'EE', 'E-', 'NN', 'N-', 'PnPn', 'RR', 'SlSl', 'SpSp'];
@@ -951,14 +953,7 @@ resetCalculator();
 updateDisplayedGenotypes();
 });
 
-// Updates the setDefaultImages function
-function setDefaultImages() {
-const defaultFemalePath = 'https://raw.githubusercontent.com/PortersTurkeys/Pictures/main/MBronze.jpg';
-const defaultFemalePath = 'https://raw.githubusercontent.com/PortersTurkeys/Pictures/main/FBronze.jpg';
 
-document.getElementById('sireImageContainer').innerHTML = `<img src="${defaultMalePath}" alt="Default Sire Image" style="max-width: 460px; height: auto;">`;
-document.getElementById('damImageContainer').innerHTML = `<img src="${defaultFemalePath}" alt="Default Dam Image" style="max-width: 460px; height: auto;">`;
-}
 
 // Adds event listeners for sire's alleles
 const sireAlleles = document.querySelectorAll('.sire-genotypes select');
