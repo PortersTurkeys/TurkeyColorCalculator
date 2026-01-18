@@ -195,7 +195,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 </center>
 
 <div class="header-container">
-<img src="Pictures/Tails.jpg" alt="Left Image" class="logo" style="width: 150px; height: auto;">
+<img src="https://raw.githubusercontent.com/PortersTurkeys/Pictures/refs/heads/main/Tails.jpg" alt="Left Image" class="logo" style="width: 150px; height: auto;">
 
 
 <h1 style="
@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 
 
-<img src="Pictures/Tails.jpg" alt="Right Image" class="logo" style="width: 150px; height: auto;">
+<img src="https://raw.githubusercontent.com/PortersTurkeys/Pictures/refs/heads/main/Tails.jpg" alt="Right Image" class="logo" style="width: 150px; height: auto;">
 </div>
 
 <center>
@@ -817,8 +817,10 @@ summaryTableBody.innerHTML = '';
 
 
 function setDefaultImages() {
-const defaultMalePath = 'Pictures/';
-const defaultFemalePath = 'Pictures/';
+const defaultMalePath = 'https://raw.githubusercontent.com/PortersTurkeys/Pictures/';
+const defaultFemalePath = 'https://raw.githubusercontent.com/PortersTurkeys/Pictures/';
+
+  
 
 document.getElementById('sireImageContainer').innerHTML = `<img src="${defaultMalePath}" alt="Default Sire Image" style="max-width: 300px; height: auto;">`;
 document.getElementById('damImageContainer').innerHTML = `<img src="${defaultFemalePath}" alt="Default Dam Image" style="max-width: 300px; height: auto;">`;
@@ -952,8 +954,8 @@ updateDisplayedGenotypes();
 
 // Updates the setDefaultImages function
 function setDefaultImages() {
-const defaultMalePath = 'Pictures/MBronze.jpg';
-const defaultFemalePath = 'Pictures/FBronze.jpg';
+const defaultFemalePath = 'https://raw.githubusercontent.com/PortersTurkeys/Pictures/main/MBronze.jpg';
+const defaultFemalePath = 'https://raw.githubusercontent.com/PortersTurkeys/Pictures/main/FBronze.jpg';
 
 document.getElementById('sireImageContainer').innerHTML = `<img src="${defaultMalePath}" alt="Default Sire Image" style="max-width: 460px; height: auto;">`;
 document.getElementById('damImageContainer').innerHTML = `<img src="${defaultFemalePath}" alt="Default Dam Image" style="max-width: 460px; height: auto;">`;
