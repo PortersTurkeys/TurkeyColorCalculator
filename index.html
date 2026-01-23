@@ -4,17 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=0.75">
     <title>Porter's Turkey Color Calculator - Porter's Rare Heritage Turkeys</title>
-    <link rel="stylesheet" href="https://raw.githubusercontent.com/Porterturkeys/TurkeyColorCalculator/refs/heads/main/styles.css">
-
-<script src="https://raw.githubusercontent.com/Porterturkeys/TurkeyColorCalculator/refs/heads/main/Various-Functions.js"></script>
-
-
+   <link rel="stylesheet" href="https://porterturkeys.github.io/TurkeyColorCalculator/styles.css">
     
- <!-- Firebase Initialization -->
+<!-- Firebase Initialization -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
   import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
-
   const firebaseConfig = {
     apiKey: "AIzaSyBLQPU3uCcsa-qj_F9LzDhZKh6F5UmU8tY",
     authDomain: "turkey-color-calculator-2.firebaseapp.com",
@@ -38,14 +33,13 @@
 
   console.log("[Firebase] Initialized successfully");
 
-  
-// Just log if it still didn't load after window load.
-window.addEventListener("load", () => {
+  // Fallback: ensure calculateOffspring always exists
   if (typeof window.calculateOffspring !== "function") {
-    console.warn("[CORE] calculateOffspring missing after load");
+    window.calculateOffspring = function() {
+      console.warn("[PAY] Dummy calculateOffspring called — core function missing!");
+      alert("⚠️ Calculator core did not load on this browser. Please refresh or try again.");
+    };
   }
-});
-
   window._realCalculateOffspring = window.calculateOffspring;
 </script>
 
@@ -196,7 +190,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 </center>
 
 <div class="header-container">
-<img src="https://raw.githubusercontent.com/PortersTurkeys/Pictures/refs/heads/main/Tails.jpg" alt="Left Image" class="logo" style="width: 150px; height: auto;">
+<img src="https://portersturkeys.github.io/Pictures/Tails.jpg" alt="Left Image" class="logo" style="width: 150px; height: auto;">
 
 
 <h1 style="
@@ -213,7 +207,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 
 
-<img src="https://raw.githubusercontent.com/PortersTurkeys/Pictures/refs/heads/main/Tails.jpg" alt="Right Image" class="logo" style="width: 150px; height: auto;">
+<img src="https://portersturkeys.github.io/Pictures/Tails.jpg" alt="Right Image" class="logo" style="width: 150px; height: auto;">
 </div>
 
 <center>
@@ -537,19 +531,22 @@ document.addEventListener("DOMContentLoaded",()=>{
 </div>
 
 
+<audio id="alleleClickSound" src="https://portersturkeys.github.io/Sounds/AlleleClick.mp3"></audio>
 <audio id="calSound" src="https://portersturkeys.github.io/Sounds/CalOff.mp3"></audio>
 <audio id="resetSound" src="https://portersturkeys.github.io/Sounds/reset.mp3"></audio>
-<audio id="returntopSound" src="https://portersturkeys.github.io/Sounds/popsoundreturntop.mp3"></audio>
-<audio id="sireSound" src="https://portersturkeys.github.io/Sounds/continue-as.mp3"></audio>
-<audio id="damSound" src="https://portersturkeys.github.io/Sounds/continue-as.mp3"></audio>
+<audio id="returntopSound" src="https://portersturkeys.github.io/Sounds/returnwoosh.mp3"></audio>
+<audio id="sireSound" src="https://portersturkeys.github.io/Sounds/ContinueSireSound.mp3"></audio>
+<audio id="damSound" src="https://portersturkeys.github.io/Sounds/ContinueDamSound.mp3"></audio>
 <audio id="shortGenotypeSound" src="https://portersturkeys.github.io/Sounds/Short-geno.mp3" preload="auto"></audio>
 <audio id="longGenotypeSound" src="https://portersturkeys.github.io/Sounds/LongGeno.mp3" preload="auto"></audio>
-<audio id="hideshowGenoSound" src="https://portersturkeys.github.io/Sounds/hide-n-show-geno.mp3" preload="auto"></audio>
-<audio id="alleleClickSound" src="https://portersturkeys.github.io/Sounds/AlleleClick.mp3" preload="auto"></audio>
-<audio id="imageToggleSound" src="https://portersturkeys.github.io/Sounds/imagetoggle.mp3" preload="auto"></audio>
-<audio id="searchSound" src="https://portersturkeys.github.io/Sounds/searchsound.mp3"></audio>
-<audio id="resetSound" src="https://portersturkeys.github.io/Sounds/reset.mp3"></audio>
-
+<audio id="hideshowGenoSound" src="https://portersturkeys.github.io/Sounds/imageToggleSound.mp3" preload="auto"></audio>
+<script src="https://porterturkeys.github.io/TurkeyColorCalculator/paysound.js"></script>   
+<audio id="imageToggleSound" src="https://portersturkeys.github.io/Sounds/imageToggleSound.mp3" preload="auto"></audio>
+<audio id="errorSound" src="https://portersturkeys.github.io/Sounds/error.mp3" preload="auto"></audio>
+<audio id="successSound" src="https://portersturkeys.github.io/Sounds/Short-geno.mp3" preload="auto"></audio>
+<audio id="varietySelectSound" src="https://portersturkeys.github.io/Sounds/AlleleClick.mp3" preload="auto"></audio>
+<audio id="varietySelectSound" src="https://portersturkeys.github.io/Sounds/longGenoSound.mp3" preload="auto"></audio>   
+<audio id="errorSound" src="https://portersturkeys.github.io/Sounds/errorSound.mp3" preload="auto"></audio>
 
 <button id="returnToTop" style="position: fixed; bottom: 20px; right: 20px; padding: 5px 10px; background-color: #1E82E6; color: white; border: 2px solid black; border-radius: 5px; cursor: pointer; font-size: 20px; display: none;">Return to Top</button>
 
@@ -728,9 +725,6 @@ btn.addEventListener("click", () => {
 </script>
 
 
-<style>
-
-</style>
 
 <script>
 
@@ -738,23 +732,20 @@ btn.addEventListener("click", () => {
 document.addEventListener("click", function(event) {
     const img = event.target.closest(".genotype-image img");
     if (!img) return;
-
+    
     try {
         playSound("hideshowGenoSound");
     } catch (e) {
         console.warn("playSound not found", e);
     }
-
+    
     img.classList.toggle("enlarged");
 });
 
-
-
-
-
-
 // Shows the button when the user scrolls down from the top of the document
-window.onscroll = function() {scrollFunction()};
+window.onscroll = function() {
+    scrollFunction();
+};
 
 function scrollFunction() {
     const returnToTopButton = document.getElementById("returnToTop");
@@ -765,69 +756,57 @@ function scrollFunction() {
     }
 }
 
-
-
+// Return to top button - smooth scroll with responsive targets
+document.getElementById("returnToTop").addEventListener("click", function() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
     
-  
-document.getElementById("returnToTop").addEventListener("click", function () {  
-  
-const width = window.innerWidth;
-const height = window.innerHeight;
-
-const isLargeDesktop = width >= 1600;
-const isDesktop = width >= 1025 && width < 1600;
-const isLandscape = height < 500;
-
-let scrollTarget;
-
-if (isLargeDesktop) {
-  // LARGE DESKTOP (big monitors)
-  scrollTarget = 820;
-
-} else if (isDesktop) {
-  // LAPTOP / SMALL DESKTOP
-  scrollTarget = 800;
-
-} else if (isLandscape) {
-  // MOBILE / TABLET LANDSCAPE
-  scrollTarget = 1060;
-
-} else {
-  // MOBILE PORTRAIT
-  scrollTarget = 1000;
-}
-
-document.scrollingElement.scrollTo({
-  top: scrollTarget,
-  behavior: "smooth"
+    const isLargeDesktop = width >= 1600;
+    const isDesktop = width >= 1025 && width < 1600;
+    const isLandscape = height < 500;
+    
+    let scrollTarget;
+    
+    if (isLargeDesktop) {
+        // LARGE DESKTOP (big monitors)
+        scrollTarget = 820;
+    } else if (isDesktop) {
+        // LAPTOP / SMALL DESKTOP
+        scrollTarget = 800;
+    } else if (isLandscape) {
+        // MOBILE / TABLET LANDSCAPE
+        scrollTarget = 1060;
+    } else {
+        // MOBILE PORTRAIT
+        scrollTarget = 1000;
+    }
+    
+    document.scrollingElement.scrollTo({
+        top: scrollTarget,
+        behavior: "smooth"
+    });
+    
+    playSound('returntopSound');
 });
 
-playSound('returntopSound');
-  
-});
-  
-  
-
-
+// Clear summary chart table body
 function clearSummaryChart() {
-const summaryTableBody = document.getElementById('summaryChart').querySelector('tbody');
-summaryTableBody.innerHTML = '';
+    const summaryTableBody = document.getElementById('summaryChart').querySelector('tbody');
+    summaryTableBody.innerHTML = '';
 }
 
-
-
+// Set default placeholder images for sire & dam
 function setDefaultImages() {
-  const defaultMaleUrl   = "https://raw.githubusercontent.com/PortersTurkeys/Pictures/main/MBronze.jpg";
-  const defaultFemaleUrl = "https://raw.githubusercontent.com/PortersTurkeys/Pictures/main/FBronze.jpg";
-
-  document.getElementById("sireImageContainer").innerHTML =
-    `<img src="${defaultMaleUrl}" alt="Default Sire Image" style="max-width:460px;height:auto;">`;
-
-  document.getElementById("damImageContainer").innerHTML =
-    `<img src="${defaultFemaleUrl}" alt="Default Dam Image" style="max-width:460px;height:auto;">`;
+    const defaultMalePath = 'https://portersturkeys.github.io/Pictures/';    
+    const defaultFemalePath = 'https://portersturkeys.github.io/Pictures/';  
+    
+    document.getElementById('sireImageContainer').innerHTML = 
+        `<img src="${defaultMalePath}" alt="Default Sire Image" style="max-width: 300px; height: auto;">`;
+        
+    document.getElementById('damImageContainer').innerHTML = 
+        `<img src="${defaultFemalePath}" alt="Default Dam Image" style="max-width: 300px; height: auto;">`;
 }
-
-window.addEventListener("DOMContentLoaded", setDefaultImages);
+window.addEventListener('DOMContentLoaded', setDefaultImages);
 
 function removeUnusedAlleles(genotype) {
 const unusedAlleles = ['CC', 'dd', 'EE', 'E-', 'NN', 'N-', 'PnPn', 'RR', 'SlSl', 'SpSp'];
@@ -953,7 +932,14 @@ resetCalculator();
 updateDisplayedGenotypes();
 });
 
+// Updates the setDefaultImages function
+function setDefaultImages() {
+const defaultMalePath = 'https://portersturkeys.github.io/Pictures/MBronze.jpg';
+const defaultFemalePath = 'https://portersturkeys.github.io/Pictures/FBronze.jpg';
 
+document.getElementById('sireImageContainer').innerHTML = `<img src="${defaultMalePath}" alt="Default Sire Image" style="max-width: 460px; height: auto;">`;
+document.getElementById('damImageContainer').innerHTML = `<img src="${defaultFemalePath}" alt="Default Dam Image" style="max-width: 460px; height: auto;">`;
+}
 
 // Adds event listeners for sire's alleles
 const sireAlleles = document.querySelectorAll('.sire-genotypes select');
@@ -1010,7 +996,13 @@ sireImage.style.width = `${value}px`;
 damImage.style.width = `${value}px`;
 }
 
+const slider = document.getElementById('your-slider');
+const image = document.getElementById('your-image');
 
+slider.addEventListener('input', function() {
+const newSize = this.value + '%';
+image.style.width = newSize;
+});
 
 function displaySummaryChart(maleOffspring, femaleOffspring) {
     const summaryTableBody = document.getElementById('summaryChart').querySelector('tbody');
@@ -2701,7 +2693,6 @@ paypal.Buttons({
 
 </body>
 </html>
-
 
 
 
